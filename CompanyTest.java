@@ -18,6 +18,7 @@ public class CompanyTest
     User clint2;
     User seller1;
     User seller2;
+    Property property1;
     /**
      * Default constructor for test class CompanyTest
      */
@@ -38,6 +39,64 @@ public class CompanyTest
         clint2 = new User("Antonio Francisco", "922222222", "fefe@remax.pt");
         seller1 = new User("Fernando Fernandes", "966777101", "tochico@hotmail.comm");
         seller2 = new User("Rodrigo Rodrigues", "966777152", "roro@remax.pt");
+        property1 = new Property("T3 Monte Belo", 150000.0);
+    }
+    
+    @Test
+    public void testRegisterClient()
+    {
+        assertTrue(company1.registerClient(clint1));
+    }
+    
+    @Test
+    public void testRegisterClientDuplicate()
+    {
+        assertTrue(company1.registerClient(clint1));
+        assertFalse(company1.registerClient(clint1));
+    }
+    
+    @Test
+    public void testRegisterClientNotNull()
+    {
+        assertFalse(company1.registerClient(null));
+    }
+    
+    @Test
+    public void testRegisterSeller()
+    {
+        assertTrue(company1.registerClient(seller1));
+    }
+    
+    @Test
+    public void testRegisterSellerDuplicate()
+    {
+        assertTrue(company1.registerSeller(seller1));
+        assertFalse(company1.registerSeller(seller1));
+    }
+    
+    @Test
+    public void testRegisterSellerNotNull()
+    {
+        assertFalse(company1.registerSeller(null));
+    }
+    
+    @Test
+    public void testRegisterProperty()
+    {
+        assertTrue(company1.registerProperty(property1));
+    }
+    
+    @Test
+    public void testRegisterPropertyDuplicate()
+    {
+        assertTrue(company1.registerProperty(property1));
+        assertFalse(company1.registerProperty(property1));
+    }
+    
+    @Test
+    public void testRegisterPropertyNotNull()
+    {
+        assertFalse(company1.registerProperty(null));
     }
 
     /**
