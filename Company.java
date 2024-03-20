@@ -168,18 +168,20 @@ public class Company {
         int mostSells = 0;
         int count = 0;
         String bestSeller = "";
+        System.out.println("ff");
         for (User seller : sellers) {
+            count = 0;
             for (Sell sell : sells)
             {
-                if(seller.getName().equals(sell.getSeller()) && sell.getDate().getYear() == year)
+                if(seller.getName().equals(sell.getSeller().getName()) && sell.getDate().getYear() == year)
                 {
+                    System.out.println("OO");
                     count++;
                 }
             }
             if(count > mostSells)
             {
                 mostSells = count;
-                count = 0;
                 bestSeller = seller.getName();
             }
         }
