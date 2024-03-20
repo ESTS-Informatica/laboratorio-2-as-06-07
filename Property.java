@@ -68,6 +68,11 @@ public class Property {
 
     @Override
     public String toString() {
-        return null;
+        StringBuilder sb = new StringBuilder();
+        sb.append("Descrição   : " + description);
+        sb.append("\n");
+        sb.append("Preço       : " + price + " Euros");
+        String st = sb.toString();
+        return st;
     }
 }
