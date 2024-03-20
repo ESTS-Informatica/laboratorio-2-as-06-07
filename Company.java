@@ -24,7 +24,10 @@ public class Company {
      * Constructor of class Company
      */
     public Company() {
-
+        clients = new ArrayList();
+        sellers = new ArrayList();
+        properties = new ArrayList();
+        sells = new ArrayList();
     }
 
     /**
@@ -33,7 +36,7 @@ public class Company {
      * @return This company clients.
      */
     public List<User> getClients() {
-        return null;         // dummy implementation
+        return clients;
     }
 
     /**
@@ -42,7 +45,7 @@ public class Company {
      * @return This company sellers.
      */
     public List<User> getSellers() {
-        return null;         // dummy implementation
+        return sellers;
     }
 
     /**
@@ -51,7 +54,7 @@ public class Company {
      * @return This company's properties.
      */
     public List<Property> getProperties() {
-        return null;         // dummy implementation
+        return properties;
     }
 
     /**
@@ -60,7 +63,7 @@ public class Company {
      * @return This company sells.
      */
     public List<Sell> getSells() {
-        return null;         // dummy implementation
+        return sells;
     }
 
     /**
@@ -70,7 +73,12 @@ public class Company {
      * @return true If the registration succeeds, false otherwise.
      */
     public boolean registerClient(User client) {
-        return true;         // dummy implementation
+        if(clients.contains(client))
+        {
+            return false;
+        }
+        clients.add(client);
+        return true;
     }
 
     /**
@@ -80,7 +88,12 @@ public class Company {
      * @return true If the registration succeeds, false otherwise.
      */
     public boolean registerSeller(User seller) {
-        return true;         // dummy implementation
+        if(sellers.contains(seller))
+        {
+            return false;
+        }
+        sellers.add(seller);
+        return true;    
     }
 
     /**
@@ -90,7 +103,12 @@ public class Company {
      * @return true If the registration succeeds, false otherwise.
      */
     public boolean registerProperty(Property property) {
-        return true;         // dummy implementation
+        if(properties.contains(property))
+        {
+            return false;
+        }
+        properties.add(property);
+        return true;        
     }
 
     /**
@@ -100,7 +118,12 @@ public class Company {
      * @return true If the registration succeeds, false otherwise.
      */
     public boolean registerSell(Sell sell) {
-        return true;         // dummy implementation
+        if(sells.contains(sell))
+        {
+            return false;
+        }
+        sells.add(sell);
+        return true;
     }
 
     /**
@@ -112,7 +135,9 @@ public class Company {
      * @return true If the request succeeds, false otherwise.
      */
     public boolean createSell(User client, User seller, Property property) {
-        return true;         // dummy implementation
+        Sell newSell = new Sell(client, seller, property);
+        registerSell(newSell);
+        return true;
     }
 
     /**
@@ -122,7 +147,15 @@ public class Company {
      * @return The total number of sells in the year.
      */
     public int calculateSellsOfTheYear(int year) {
-        return 0;         // dummy implementation
+        int count = 0;
+        for (Sell sell : sells)
+        {
+            if(sell.getDate().getYear() == year)
+            {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -132,7 +165,26 @@ public class Company {
      * @return The name of the seller of the year.
      */
     public String findSellerOfTheYear(int year) {
-        return null;         // dummy implementation
+        int mostSells = 0;
+        int count = 0;
+        String bestSeller = "";
+        for (User seller : sellers) {
+            for (Sell sell : sells)
+            {
+                if(seller.getName().equals(sell.getSeller()) && sell.getDate().getYear() == year)
+                {
+                    count++;
+                }
+            }
+            if(count > mostSells)
+            {
+                mostSells = count;
+                count = 0;
+                bestSeller = seller.getName();
+            }
+        }
+        
+        return bestSeller;
     }
 
 }
